@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <record id="seq_openaccadmy_cource_title" model="ir.sequence">
+            <field name="name">Cource Title</field>
+            <field name="code">openacademy.course</field>
+            <field name="prefix">C</field>
+            <field name="padding">2</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+
+</odoo>

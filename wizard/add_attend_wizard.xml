@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="wizard_form_view">
+            <field name="name">wizard.form</field>
+            <field name="model">openacademy.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Add Attendees">
+                    <group>
+                        <field name="session_id"/>
+                        <field name="attendee_id"/>
+                    </group>
+                    <footer>
+                        <button name="add_attendee" type="object" string="Add_attendee" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" class="btn btn-info"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!--        &lt;!&ndash;        <act_window id="launch_session_wizard"/>&ndash;&gt;-->
+        <!--        &lt;!&ndash;                   <field name="Add Attendees" />&ndash;&gt;-->
+        <!--        &lt;!&ndash;                  <field src_model="openacademy.session"/>&ndash;&gt;-->
+        <!--        &lt;!&ndash;                    <field res_model="openacademy.wizard"/>&ndash;&gt;-->
+        <!--        &lt;!&ndash;                    <field view_mode="form"/>&ndash;&gt;-->
+        <!--        &lt;!&ndash;                   <field target="new" />&ndash;&gt;-->
+        <!--        &lt;!&ndash;                  <field  ey2="client_action_multi"/>&ndash;&gt;-->
+
+        <record model="ir.actions.act_window" id="action_wizard_form_view" >
+            <field name="name">Add Attendees</field>
+            <!--            <field name="type">ir.actions.act_window</field>-->
+            <field name="res_model">openacademy.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_openacademy_session"/>
+        </record>
+    </data>
+</odoo>

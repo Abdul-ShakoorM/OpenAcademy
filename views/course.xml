@@ -1,0 +1,149 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <!--
+            <record model="ir.ui.view" id="openacademy.list">
+              <field name="name">openacademy list</field>
+              <field name="model">openacademy.openacademy</field>
+              <field name="arch" type="xml">
+                <tree>
+                  <field name="name"/>
+                  <field name="value"/>
+                  <field name="value2"/>
+                </tree>
+              </field>
+            </record>
+        -->
+        <record id="openacademy_course_tree" model="ir.ui.view">
+            <field name="name">openacademy.course.tree</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <tree string="Open Academy Course">
+                    <field name="title"/>
+                    <field name="name"/>
+                    <field name="responsible_user"/>
+                    <field name="description" string="Description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="openacademy_course_form" model="ir.ui.view">
+            <field name="name">openacademy.course.form</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <form string="Course">
+                    <header>
+                    <button id="button_confirm" name="action_confirm" string="Confirm" type="object"
+                            class="btn-primary" states="draft" confirm="Are you sure you need to confirm ?"/>
+                    <button id="button_done" name="action_done" string="Mark As Done" type="object"
+                            class="btn-primary" states="confirm"/>
+                    <button id="button_draft" name="action_draft" string="Set To Draft" type="object"
+                            class="btn-primary" states="cancel"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirm,done"/>
+                </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="title" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="responsible_user"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Session Detail">
+                                <field name="session_id">
+                                    <tree editable="bottom">
+                                        <field name="start_date"/>
+<!--                                          <field name="session_ids">-->
+<!--                                    <tree string="Registered sessions">-->
+                                        <field name="name"/>
+                                        <field name="instructor"/>
+<!--                                    </tree>-->
+<!--                                </field>-->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Description">
+                                <field name="description" nolabel="1"/>
+                            </page>
+                            <page string="Additional Information">
+                                <tree editable="bottom"> test</tree>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+<!--search view <search>-->
+<!--    <field name="name"/>-->
+<!--    <field name="inventor_id"/>-->
+<!--</search>-->
+        <record id="search_openacademy_course" model="ir.ui.view">
+            <field name="name">openacademy.course.search</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="title"/>
+<!--                    <field name="description"/>-->
+                    <filter name="my_courses" string="My Courses"
+                            domain="[('responsible_user', '=', uid)]"/>
+                    <group string="Group By">
+                        <filter name="by_responsible" string="Responsible"
+                                context="{'group_by': 'responsible_user'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+<!--Actions and Menus-->
+        <record model="ir.actions.act_window" id="openacademy_action_course">
+            <field name="name">Course</field>
+            <field name="res_model">openacademy.course</field>
+            <field name="view_mode">tree,form,kanban,graph</field>
+<!--            <field name="context" eval="{'search_default_my_courses': 1}"/>-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your Course
+                </p>
+            </field>
+        </record>
+
+
+        <!-- server action to the one above -->
+        <!--
+            <record model="ir.actions.server" id="openacademy.action_server">
+              <field name="name">openacademy server</field>
+              <field name="model_id" ref="model_openacademy_openacademy"/>
+              <field name="state">code</field>
+              <field name="code">
+                action = {
+                  "type": "ir.actions.act_window",
+                  "view_mode": "tree,form",
+                  "res_model": model._name,
+                }
+              </field>
+            </record>
+        -->
+
+        <!-- Top menu item -->
+
+        <menuitem  id="openacademy_menu_root" name="Open Academy"  sequence="10"/>
+ <!-- menu categories -->
+
+        <menuitem  id="openacademy.course_root1" name="Course" action="openacademy_action_course" parent="openacademy_menu_root"
+                  sequence="10"/>
+        <!--   <menuitem name="Menu 2" id="openacademy.menu_2" parent="openacademy.menu_root"/>
+       -->
+        <!-- actions -->
+        <!--
+            <menuitem name="List" id="openacademy.menu_1_list" parent="openacademy.menu_1"
+                      action="openacademy.action_window"/>
+            <menuitem name="Server to list" id="openacademy" parent="openacademy.menu_2"
+                      action="openacademy.action_server"/>
+        -->
+    </data>
+</odoo>

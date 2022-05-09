@@ -1,0 +1,170 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tree_view_openacadmy_session">
+            <field name="name">Session</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <tree string="Open Academy Session Tree" decoration-info="duration&lt;5"
+                      decoration-danger="duration&gt;15">
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="duration"/>
+                    <!--                    <field name="duration" invisible="1"/>-->
+                    <field name="no_of_seats"/>
+                    <field name="instructor"/>
+                    <field name="course_id"/>
+                    <field name="taken_no_of_seats" widget="progressbar"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <!--'base','-->
+        <!--      form-->
+        <record model="ir.ui.view" id="form_view_openacadmy_session">
+            <field name="name">Session</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <form string="Session">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="instructor"/>
+                                <field name="course_id"/>
+                                <field name="active"/>
+                            </group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="duration"/>
+                                <field name="no_of_seats"/>
+                                <field name="taken_no_of_seats" widget="progressbar"/>
+                            </group>
+                        </group>
+                        <label for="attendee_id"/>
+                        <field name="attendee_id"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- calendar view -->
+        <record model="ir.ui.view" id="openacademy_calendar_view">
+            <field name="name">session.calendar</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <calendar date_stop="end_date" date_start="start_date" string="Operations" color="instructor"
+                          event_limit="5" delete="0" create="0">
+                    <field name="instructor"/>
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+        <!-- gant chart ,  but this is just for showing purpose but its not working beacause in odoo v15 we give the web_gantt is dapandci then it
+        will work but web_gantt is not available in comunity edition-->
+        <record model="ir.ui.view" id="session_gantt_view">
+            <field name="name">session.gantt</field>
+            <field name="model">openacademy.session</field>
+            <!--            <field name="type">timeline</field>-->
+            <field name="arch" type="xml">
+                <gantt string="Session Gantt" date_start="start_date" date_stop="end_date"
+                       default_group_by='instructor'>
+                </gantt>
+            </field>
+        </record>
+        <!--        end-->
+        <!--        session_line_pivot-->
+        <record id="workcenter_line_pivot" model="ir.ui.view">
+            <field name="name">session.pivot</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <pivot string="Operations" sample="1">
+                    <field name="start_date"/>
+                    <field name="instructor"/>
+                    <field name="duration" type="measure" string="Duration (minutes)" widget="float_time"/>
+                </pivot>
+            </field>
+        </record>
+        <!--        graph view-->
+        <record model="ir.ui.view" id="openacademy_session_graph_view">
+            <field name="name">openacademy.session.graph</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <graph string="Participations by Courses">
+                    <field name="course_id"/>
+                    <field name="attendees_count" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!--        kanban view-->
+        <record model="ir.ui.view" id="view_openacad_session_kanban">
+            <field name="name">openacad.session.kanban</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="course_id">
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div
+                                    t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                                <div class="oe_dropdown_kanban">
+                                    <!-- dropdown menu -->
+                                    <div class="oe_dropdown_toggle">
+                                        <i class="fa fa-bars fa-lg"/>
+                                        <ul class="oe_dropdown_menu">
+                                            <li>
+                                                <a type="delete">Delete</a>
+                                            </li>
+                                            <li>
+                                                <ul class="oe_kanban_colorpicker"
+                                                    data-field="color"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="oe_clear"></div>
+                                </div>
+                                <div t-attf-class="oe_kanban_content">
+                                    <!-- title -->
+                                    Session name:
+                                    <field name="name"/>
+                                    <br/>
+                                    Start date:
+                                    <field name="start_date"/>
+                                    <br/>
+                                    duration:
+                                    <field name="duration"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!-- action -->
+        <record model="ir.actions.act_window" id="action_openacademy_session">
+            <field name="name">Session</field>
+            <field name="res_model">openacademy.session</field>
+            <field name="view_id" ref="tree_view_openacadmy_session"/>
+            <!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form,kanban,calendar,graph,pivot,gantt</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create New Session
+                </p>
+            </field>
+        </record>
+        <!-- menus-->
+        <menuitem id="menu_session_root2" name="Session" action="action_openacademy_session" sequence="10"
+                  parent="openacademy_menu_root"/>
+        <menuitem id="menu_session" name=" Sub Session " action="action_openacademy_session" sequence="10"
+                  parent="menu_session_root2"/>
+        <menuitem id="menu_session_wizard" name="Cancel Session" action="action_wizard_form_view" sequence="20"
+                  parent="menu_session_root2"/>
+        <!---->
+
+    </data>
+</odoo>

@@ -1,0 +1,129 @@
+<odoo>
+    <data>
+        <record id="report_course" model="ir.actions.report">
+            <field name="name">Report</field>
+            <field name="model">openacademy.course</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">openacademy.report_course</field>
+            <field name="report_file">openacademy.report_course</field>
+            <field name="binding_model_id" ref="model_openacademy_course"/>
+            <field name="binding_type">report</field>
+            <field name="attachment_use" eval="True"/>
+          <field name="attachment">(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')</field>
+
+        </record>
+<!--       <template id="report_session_view">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t t-foreach="docs" t-as="o">-->
+<!--                <center>-->
+<!--                    <h1>Session Report</h1>-->
+<!--                </center>-->
+<!--                <t t-call="report.external_layout">-->
+<!--                    <div class="page">-->
+<!--                        <h2 t-field="o.name"/>-->
+<!--                        <p>From-->
+<!--                            <span t-field="o.start_date"/>-->
+<!--                            to-->
+<!--                            <span t-field="o.end_date"/>-->
+<!--                        </p>-->
+<!--                        <h3>Attendees:</h3>-->
+<!--                        <ul>-->
+<!--                            <t t-foreach="o.attendee_id" t-as="attendee">-->
+<!--                                <li>-->
+<!--                                    <span t-field="attendee.name"/>-->
+<!--                                </li>-->
+<!--                            </t>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </t>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--        </template>-->
+<!--        <template id="report_patient_card">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t t-foreach="docs" t-as="o">-->
+<!--                <t t-call="web.basic_layout">-->
+<!--                    <t t-call="demo_odoo15.custom_header"/>-->
+<!--                    <div class="page">-->
+<!--                        <br></br>-->
+<!--                        <div class="oe_structure"/>-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-xs-2" style="margin:auto;">-->
+<!--                            </div>-->
+<!--                            <center>-->
+<!--                                <div class="col-xs-8" style="margin:auto">-->
+<!--                                    <table class="table table-condensed"-->
+<!--                                           style="border: 3px solid black !important;">-->
+<!--                                        <tr>-->
+<!--                                            <td width="40%">-->
+<!--                                                <p style="text-align:center;padding-top:10px;">-->
+<!--                                                    <img t-if="not o.image"-->
+<!--                                                         t-att-src="'/web/static/src/img/placeholder.png'"-->
+<!--                                                         height="120"-->
+<!--                                                         border="1" width="120"/>-->
+<!--                                                    <img t-if="o.image"-->
+<!--                                                         t-att-src="'data:image/png;base64,%s' % to_text(o.image)"-->
+<!--                                                         height="120" border="1" width="120"/>-->
+<!--                                                </p>-->
+<!--                                            </td>-->
+<!--                                            <td width="60%">-->
+<!--                                                <table>-->
+<!--                                                    <tr>-->
+<!--                                                        <td colspan="3" class="text-center">-->
+<!--                                                            <h3 t-field="o.patient_name"/>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+<!--                                                    <tr>-->
+<!--                                                        <td>-->
+<!--                                                            <span>-->
+<!--                                                                <strong>-->
+<!--                                                                    Age-->
+<!--                                                                </strong>-->
+<!--                                                            </span>-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <span>:</span>-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <span t-field="o.age"/>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+<!--                                                    <tr>-->
+<!--                                                        <td>-->
+<!--                                                            <span>-->
+<!--                                                                <strong>-->
+<!--                                                                    Reference-->
+<!--                                                                </strong>-->
+<!--                                                            </span>-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <span>:</span>-->
+<!--                                                        </td>-->
+<!--                                                        <td>-->
+<!--                                                            <span t-field="o.reference"/>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+<!--                                                </table>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+<!--                            </center>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <t t-call="demo_odoo15.custom_footer"/>-->
+<!--                </t>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--    </template>-->
+            <template id="report_session_view">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <t t-call="web.external_layout">
+                            <h1>hasbonallah</h1>
+                        </t>
+                    </t>
+                </t>
+            </template>
+    </data>
+</odoo>
