@@ -162,7 +162,7 @@
                   parent="openacademy_menu_root"/>
         <menuitem id="menu_session" name=" Sub Session " action="action_openacademy_session" sequence="10"
                   parent="menu_session_root2"/>
-        <menuitem id="menu_session_wizard" name="Cancel Session" action="action_wizard_form_view" sequence="20"
+        <menuitem id="menu_session_wizard" name="Add Attendees" action="action_wizard_form_view" sequence="20"
                   parent="menu_session_root2"/>
         <!---->
 
