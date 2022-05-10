@@ -36,7 +36,7 @@
         'views/partner.xml',
         'views/session_board.xml',
         'data/data.xml',
-        'report/report.xml',
+#         'report/report.xml',
 
     ],
     # only loaded in demonstration mode  or impor demo data files
