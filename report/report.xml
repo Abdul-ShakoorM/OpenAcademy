@@ -1,5 +1,5 @@
 <odoo>
-    <data>
+<!--     <data>
         <record id="report_course" model="ir.actions.report">
             <field name="name">Report</field>
             <field name="model">openacademy.course</field>
@@ -11,7 +11,7 @@
             <field name="attachment_use" eval="True"/>
           <field name="attachment">(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')</field>
 
-        </record>
+        </record> -->
 <!--       <template id="report_session_view">-->
 <!--        <t t-call="web.html_container">-->
 <!--            <t t-foreach="docs" t-as="o">-->
@@ -116,7 +116,7 @@
 <!--            </t>-->
 <!--        </t>-->
 <!--    </template>-->
-            <template id="report_session_view">
+<!--             <template id="report_session_view">
                 <t t-call="web.html_container">
                     <t t-foreach="docs" t-as="o">
                         <t t-call="web.external_layout">
@@ -125,5 +125,5 @@
                     </t>
                 </t>
             </template>
-    </data>
+    </data> -->
 </odoo>
