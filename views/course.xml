@@ -56,17 +56,17 @@
                         </group>
                         <notebook colspan="4">
                             <page string="Session Detail">
-                                <field name="session_id">
-                                    <tree editable="bottom">
-                                        <field name="start_date"/>
-<!--                                          <field name="session_ids">-->
-<!--                                    <tree string="Registered sessions">-->
-                                        <field name="name"/>
-                                        <field name="instructor"/>
-<!--                                    </tree>-->
-<!--                                </field>-->
-                                    </tree>
-                                </field>
+<!--                          <field name="session_id">-->
+<!--                         <tree editable="bottom">-->
+<!--                          <field name="start_date"/>-->
+                                    <field name="session_id">
+                                        <tree string="Registered sessions">
+                                            <field name="name"/>
+                                            <field name="instructor"/>
+                                        </tree>
+                                    </field>
+<!--                        </tree>-->
+<!--                         </field>-->
                             </page>
                             <page string="Description">
                                 <field name="description" nolabel="1"/>
